@@ -21,7 +21,8 @@ class Interval(object):
             # cyclic interval
             in_before_cycle = value in Interval(start=self.start,
                                      end=self.circle_size,
-                                     closed_on_left=self.closed_on_left)
+                                     closed_on_left=self.closed_on_left, 
+                                     closed_on_right=True)
 
             if self.closed_on_right:
                 in_after_cycle = self.start + value <= self.start + self.end
@@ -30,12 +31,13 @@ class Interval(object):
 
             return in_before_cycle or in_after_cycle
         else:
+            
             if self.closed_on_left:
                 part_1 = self.start <= value
             else:
                 part_1 = self.start < value
 
-            if self.closed_on_left:
+            if self.closed_on_right:
                 part_2 = self.end >= value
             else:
                 part_2 = self.end > value

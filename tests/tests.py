@@ -28,3 +28,13 @@ class IsKeyInIntervalTest(unittest.TestCase):
         self.assertTrue(1 in interval)
         self.assertTrue(5 in interval)
 
+    def test_closed_on_left(self):
+        interval = Interval(start=2, end=3, circle_size=10, closed_on_left=True, closed_on_right=False)
+        self.assertTrue(2 in interval)
+        self.assertFalse(3 in interval)
+
+    def test_closed_on_right(self):
+        interval = Interval(start=2, end=3, circle_size=10, closed_on_left=False, closed_on_right=True)
+        self.assertFalse(2 in interval)
+        self.assertTrue(3 in interval)
+
